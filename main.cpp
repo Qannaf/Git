@@ -2,7 +2,11 @@
 
 int main()
 {
-    std::cout<<"Hello world\n";
+    std::cout<<"Hello Qannaf\n";
+    
 
+
+    
+    system("pause");
     return 0;
 }
