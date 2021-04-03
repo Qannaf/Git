@@ -113,6 +113,37 @@ will show the commits that are on foo and not on master. Helpful for seeing what
 # 3. Working with Remotes
 ## 3.1. Deleting a Remote Branch
 To delete a remote branch in Git:
-	git push [remote-name] --delete [branch-name]
+````
+git push [remote-name] --delete [branch-name]
 or
-	git push [remote-name] :[branch-name]
+git push [remote-name] :[branch-name]
+````
+## 3.2. Changing Git Remote URL
+* Check existing remote
+````
+git remote -v
+# origin https://github.com/username/repo.git (fetch)
+# origin https://github.com/usernam/repo.git (push)
+````
+* Changing repository URL
+````
+git remote set-url origin https://github.com/username/repo2.git
+# Change the 'origin' remote's URL
+````
+* Verify new remote URL
+````
+git remote -v
+# origin https://github.com/username/repo2.git (fetch)
+# origin https://github.com/username/repo2.git (push)
+````
+#3.3. List Existing Remotes
+* List all the existing remotes associated with this repository:
+````
+git remote
+````
+* List all the existing remotes associated with this repository in detail including the fetch and push URLs:
+````
+git remote --verbose
+	or simply
+git remote -v
+````
