@@ -1,6 +1,6 @@
 # 1. Getting started with Git
 ## 1.1. Create your first repository, then add and commit files
-*See if we have git installed
+* See if we have git installed
 ````
 git --version
 git status
@@ -10,10 +10,10 @@ git status
 git init
 ````
 * Add commit
-````
+````````
 git add <file1> <file2> < ... >
 git add commit -m"message or v0.0.0.1 beta"
-```
+````````
 for add all file
 ```
 git add .             
@@ -32,19 +32,19 @@ git clone https://github.com/username/projectname.git MyFolder
 ````
 
 ## 1.3. Setting your user name and email
-	* Add a global identity
+* Add a global identity
 ````
 git config --global user.name "Your Name"
 git config --global user.email mail@example.com
 ````
 
-	* Remove a global identity
+* Remove a global identity
 ````
 git config --global --remove-section user.name
 git config --global --remove-section user.email
 ````
 ## 1.4.Learning about a command
-	* Help
+* Help
 ````
 git diff --help
 git help diff            
@@ -76,6 +76,7 @@ git log -S"Hello Qannaf"	Searches for changes in lines containing
 git shortlog
 ````
 ## 2.6. Searching commit string in git log
+````
 git log --all --grep "removed file"		Will search for removed file string in all logs in all branches.
 git log --grep="add file" --invert-grep
 ````
@@ -104,9 +105,14 @@ git show 6531d54
 ## 2.12. Git Log Between Two Branches
 ````
 git log master..foo 
-````			
+``````
 will show the commits that are on foo and not on master. Helpful for seeing what commits
 					you've added since branching!
 
 
-## 2.13. One line showing commiter name and time since commit
+# 3. Working with Remotes
+## 3.1. Deleting a Remote Branch
+To delete a remote branch in Git:
+	git push [remote-name] --delete [branch-name]
+or
+	git push [remote-name] :[branch-name]
