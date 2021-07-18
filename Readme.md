@@ -355,7 +355,6 @@ Stage this hunk [y,n,q,a,d,/,s,e,?]?
 This makes it easy to catch changes which you do not want to commit.
 You can also open this via git add --interactive and selecting p.
 
-```
 ## 4.4: Interactive add
 ```
 git add -i (or --interactive) 
