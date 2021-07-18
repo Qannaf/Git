@@ -175,7 +175,9 @@ git merge remote-name/branch-name
 The pull command combines a fetch and a merge.
 ```
 git pull
+```
 The pull with --rebase flag command combines a fetch and a rebase instead of merge.
+```
 git pull --rebase remote-name branch-name
 ```
 
@@ -293,4 +295,118 @@ git remote set-url <remote_name> <remote_repository_url>
 Example:
 ```
 git remote set-url heroku https://git.herok
+```
+
+
+
+
+# 4: Staging
+## 4.1: Staging All Changes to Files
+```
+git add -A
+```
+Version ≥ 2.0
+```
+git add .
+```
+In version 2.x, git add . will stage all changes to files in the current directory and all its subdirectories. However, in
+1.x it will only stage new and modified files, not deleted files.
+Use git add -A, or its equivalent command git add --all, to stage all changes to files in any version of git.
+
+## 4.2: Unstage a file that contains changes
+```
+git reset <filePath>
+```
+To create a new branch (locally):
+* With the commit hash (or part of it)
+```
+git checkout -b new_branch 6e559cb
+```
+* or to go back 4 commits from HEAD
+```
+git checkout -b new_branch HEAD~4
+```
+
+## 4.3: Add changes by hunk
+You can see what "hunks" of work would be staged for commit using the patch flag:
+```
+git add -p
+```
+or
+```
+git add --patch
+```
+This opens an interactive prompt that allows you to look at the diffs and let you decide whether you want to include them or not.
+Stage this hunk [y,n,q,a,d,/,s,e,?]?
+- y stage this hunk for the next commit
+- n do not stage this hunk for the next commit
+- q quit; do not stage this hunk or any of the remaining hunks
+- a stage this hunk and all later hunks in the file
+- d do not stage this hunk or any of the later hunks in the file
+- g select a hunk to go to
+- / search for a hunk matching the given regex
+- j leave this hunk undecided, see next undecided hunk
+- J leave this hunk undecided, see next hunk
+- k leave this hunk undecided, see previous undecided hunk
+- K leave this hunk undecided, see previous hunk
+- s split the current hunk into smaller hunks
+- e manually edit the current hunk
+- ? print hunk help
+This makes it easy to catch changes which you do not want to commit.
+You can also open this via git add --interactive and selecting p.
+
+```
+## 4.4: Interactive add
+```
+git add -i (or --interactive) 
+```
+will give you an interactive interface where you can edit the index, to prepare what
+you want to have in the next commit. You can add and remove changes to whole files, add untracked files and
+remove files from being tracked, but also select subsection of changes to put in the index, by selecting chunks of
+changes to be added, splitting those chunks, or even editing the diff. Many graphical commit tools for Git (like e.g.
+git gui) include such feature; this might be easier to use than the command line version.
+It is very useful (1) if you have entangled changes in the working directory that you want to put in separate commits,
+and not all in one single commit (2) if you are in the middle of an interactive rebase and want to split too large
+commit.
+```
+$ git add -i
+staged unstaged path
+1: unchanged +4/-4 index.js
+2: +1/-0 nothing package.json
+*** Commands ***
+1: status 2: update 3: revert 4: add untracked
+5: patch 6: diff 7: quit 8: help
+What now>
+```
+The top half of this output shows the current state of the index broken up into staged and unstaged columns:
+1. index.js has had 4 lines added and 4 lines removed. It is currently not staged, as the current status reports "unchanged." When this file becomes staged, the +4/-4 bit will be transferred to the staged column and the unstaged column will read "nothing."
+2. package.json has had one line added and has been staged. There are no further changes since it has been staged as indicated by the "nothing" line under the unstaged column. The bottom half shows what you can do. Either enter a number (1-8) or a letter (s, u, r, a, p, d, q, h).
+status shows output identical to the top part of the output above.
+update allows you to make further changes to the staged commits with additional syntax.
+revert will revert the staged commit information back to HEAD.
+add untracked allows you to add filepaths previously untracked by version control.
+patch allows for one path to be selected out of an output similar to status for further analysis.
+diff displays what will be committed.
+quit exits the command.
+help presents further help on using this command.
+
+## 4.5: Show Staged Changes
+To display the hunks that are staged for commit:
+```
+git diff --cached
+```
+
+## 4.6: Staging A Single File
+To stage a file for committing, run
+```
+git add <filename>
+```
+
+## 4.7: Stage deleted files
+```
+git rm filename
+```
+To delete the file from git without removing it from disk, use the --cached flag
+```
+git rm --cached filename
 ```
