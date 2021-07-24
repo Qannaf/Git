@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="420" height="210" src="git.png">
+</p>
+
 # 1. Getting started with Git
 ## 1.1. Create your first repository, then add and commit files
 * See if we have git installed
